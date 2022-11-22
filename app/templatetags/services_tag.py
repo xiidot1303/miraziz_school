@@ -1,9 +1,13 @@
 from django import template
 from app.services import (
-    lesson_service, student_service, payment_service, group_service
+    lesson_service, student_service, payment_service, group_service, user_service
 )
 
 register = template.Library()
+
+@register.filter()
+def user_in_group(request, groups):
+    return user_service.is_user_in_group(request, groups)
 
 @register.filter()
 def student_attended_date(student, group):

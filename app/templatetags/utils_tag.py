@@ -17,6 +17,9 @@ def index(l, i):
 def time(t):
     return t.strftime('%H:%M')
 
+@register.filter()
+def number(number):
+    return '{:,}'.format(number).replace(',', ' ')
 
 @register.filter()
 def is_even_number(number):

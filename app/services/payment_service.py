@@ -68,6 +68,17 @@ def pay_next_payment_of_member(member, amount, type):
             amount -= payment.remaining_amount
             income_create(payment, payment.remaining_amount, type)
 
+def filter_payments_by_group(group_pk, payments=Payment.objects):
+    query = payments.filter(
+        Exists(
+            Group_member.objects.filter(
+                Exists(Group.objects.filter(pk=group_pk).filter(members__pk=OuterRef('pk')))
+            ).filter(
+                payments__pk=OuterRef('pk')
+                )
+        )
+    )
+    return query
 
 def filter_payments_by_student(student, decreasing=False, group_pk=None):
     
@@ -81,16 +92,22 @@ def filter_payments_by_student(student, decreasing=False, group_pk=None):
         due_date__range = ["1000-10-10", to_date.strftime("%Y-%m-%d")],
     )
     if group_pk:
-        payments = payments.filter(
-            Exists(
-                Group_member.objects.filter(
-                    Exists(Group.objects.filter(pk=group_pk).filter(members__pk=OuterRef('pk')))
-                ).filter(
-                    payments__pk=OuterRef('pk')
-                    )
-            )
-        )
+        payments = filter_payments_by_group(group_pk, payments)
+
     return payments.order_by('-due_date') if decreasing else payments
+
+def filter_debtors(group_pk=None):
+    if group_pk:
+        payments = filter_payments_by_group(group_pk)
+    else:
+        payments = Payment.objects.all()
+    
+    payments = payments.filter(
+        payed = False,
+        due_date__lte = today()
+    )
+    return payments
+
 
 
 # INCOME
@@ -111,6 +128,37 @@ def income_cancel(income):
         return True
     return False
 
+def income_confirm(income):
+    income.conf = True
+    income.save()
+
+def income_reject(income):
+    income.conf = None
+    income.save()
+
 def get_income_by_pk(pk):
     income = get_object_or_404(Income, pk=pk)
     return income
+
+def filter_unconfirmed_incomes():
+    incomes = Income.objects.filter(conf=False, amount__gte=0).exclude(cancelled=True)
+    return incomes
+
+def filter_confirmed_incomes():
+    incomes = Income.objects.filter(conf=True, amount__gte=0).exclude(cancelled=True)
+    return incomes
+
+def filter_incomes_by_date(incomes, from_, to):
+    try:
+        if from_ and to:
+            result = incomes.filter(datetime__range=(from_, to))
+        elif from_:
+            result = incomes.filter(datetime__gte=from_)
+        elif to:
+            result = incomes.filter(datetime__lte=to)
+        else:
+            result = incomes
+
+        return result
+    except:
+        return incomes

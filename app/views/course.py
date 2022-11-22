@@ -1,8 +1,8 @@
 from app.views import *
 from app.services.course_service import *
 
-@permission_required('app.view_cource')
 @login_required
+@permission_required('app.view_course')
 def course_list_all(request):
     courses = all_courses()
     context = {'courses': courses}

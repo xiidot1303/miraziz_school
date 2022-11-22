@@ -5,3 +5,5 @@ from app.services.user_service import *
 def main_menu(request):
     if is_user_in_group(request, 'teacher'):
         return redirect('lesson_page')
+    elif is_user_in_group(request, 'accounter'):
+        return redirect('accounter_page')

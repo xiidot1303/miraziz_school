@@ -6,7 +6,8 @@ from django.contrib.auth.views import (
     PasswordChangeView
 )
 from app.views import (
-    student, course, teacher, group, lesson, main, payment
+    student, course, teacher, group, lesson, 
+    main, payment, accounter, finance
 )
 
 urlpatterns = [
@@ -62,4 +63,13 @@ urlpatterns = [
     path('payment/pay', payment.payment_pay, name='payment_pay'),
     path('payment/cancel/<int:pk>/', payment.payment_cancel, name='payment_cancel'),
 
-]
+    # accounter
+    path('accounter/page', accounter.accounter_page, name='accounter_page'),
+    path('accounter/confirm-income/<int:pk>/', accounter.accounter_confirm_income, name='accounter_confirm_income'),
+    path('accounter/confirm-incoms-all', accounter.accounter_confirm_incomes_all, name='accounter_confirm_income_all'),
+    path('accounter/reject-income/<int:pk>/', accounter.accounter_reject_income, name='accounter_reject_income'),
+
+    # finance 
+    path('finance/incomes', finance.finance_incomes, name='finance_incomes'),
+    path('finance/debtors', finance.finance_debtors, name='finance_debtors'),
+]   

@@ -123,6 +123,10 @@ class Payment(models.Model):
     def waiting_incomes(self):
         return sum([i.amount for i in self.incomes.filter(conf=False)])
 
+    @property
+    def member(self):
+        return Group_member.objects.get(payments__pk=self.pk)
+
     def save(self, *args, **kwargs):
         try:
             if self.remaining_amount <= 0:
@@ -149,6 +153,15 @@ class Income(models.Model):
     @property
     def payment(self):
         return Payment.objects.get(incomes__pk=self.pk)
+
+    @property
+    def student(self):
+        return Group_member.objects.get(payments__incomes__pk=self.pk).student
+
+    @property
+    def group(self):
+        return Group_member.objects.get(payments__incomes__pk=self.pk).group
+
 
 
     def __str__(self) -> str:
