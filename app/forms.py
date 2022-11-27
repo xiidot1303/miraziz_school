@@ -4,7 +4,6 @@ from app.models import *
 from django import forms
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 from phonenumber_field.formfields import PhoneNumberField
-from django.contrib.auth.models import Group as User_group
 
 class StudentForm(ModelForm):
     class Meta:
@@ -97,8 +96,7 @@ class UserForm(forms.Form):
         widget=forms.TextInput(attrs={"class": "form-control"})
     )
     groups = forms.MultipleChoiceField(
-        widget=forms.SelectMultiple(attrs={"class": "form-control choicesjs"}),
-        choices=[(g.pk, g.name) for g in User_group.objects.all()]
+        widget=forms.SelectMultiple(attrs={"class": "form-control choicesjs"})
     )
     email = forms.CharField(
         widget=forms.TextInput(attrs={"class": "form-control", "type": "email"}),
