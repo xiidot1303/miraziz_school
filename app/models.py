@@ -176,8 +176,11 @@ class Income(models.Model):
 class WeekdayManager(models.Manager):
     def get_queryset(self):
         query = super().get_queryset()
-        if not query.all():
-            [query.create(day=i) for i in range(7)]
+        try:
+            if not query.all():
+                [query.create(day=i) for i in range(7)]
+        except:
+            None
         return query
 
 class Weekday(models.Model):
