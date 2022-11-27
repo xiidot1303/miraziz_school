@@ -5,6 +5,9 @@ from django.db import IntegrityError
 def is_user_in_group(request, *groups):
     return request.user.groups.filter(name__in=groups).exists() or request.user.is_superuser
 
+def is_superuser(request):
+    return request.user.is_superuser
+
 def users_all(exclude_superadmins=False):
     users = User.objects.all()
     if exclude_superadmins:
