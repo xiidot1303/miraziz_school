@@ -9,3 +9,5 @@ def main_menu(request):
         return redirect('lesson_page')
     elif is_user_in_group(request, 'accounter'):
         return redirect('accounter_page')
+    elif is_user_in_group(request, 'receptionist'):
+        return redirect('student_list_all')
