@@ -107,7 +107,109 @@ lang_dict = {
 
     "sunday": ["Yakshanba", "Воскресенье"],
 
-    "": ["", ""],
+    "teacher has lesson in this time": ["Bu vaqtda o'qituvchining darsi bor", "Учитель имеет урок в это время"],
+
+    "time": ["Vaqt", "Время"],
+
+    "days": ["Kunlar", "Дни"],
+
+    "started attend date": ["Qatnashishni boshlagan sana", "Дата начала посещения"],
+
+    "end lesson": ["Darsni tugatish", "Закончить урок"],
+
+    "successfully end lesson": ["Dars muvaffaqiyatli yakunlandi", "Урок закончился успешно"],
+
+    "lesson can be finished after {}": ["Darsni {} dan keyin tugatish mumkin", "Урок можно закончить после {}"],
+
+    "price": ["Narx", "Цена"],
+
+    "started date": ["Boshlangan sana", "Дата начала"],
+
+    "remaining lessons": ["Qolgan darslar", "Оставшиеся уроки"],
+
+    "add student": ["Talaba qo'shish", "Добавить студента"],
+
+    "{student} is added to group {group}": ["{student} {group} guruhiga qo'shildi", "{student} добавлен в группу {group}"],
+
+    "adding student": ["Talaba qo'shish", "Добавить студента"],
+
+    "remove from group": ["Guruhdan chiqarish", "Удалить из группы"],
+
+    "january": ["Yanvar", "Январь"],
+
+    "february": ["Fevral", "Февраль"],
+
+    "march": ["Mart", "Март"],
+    
+    "april": ["Aprel", "Апрель"],
+
+    "may": ["May", "Май"],
+
+    "june": ["Iyun", "Июнь"],
+
+    "july": ["Iyul", "Июль"],
+
+    "august": ["Avgust", "Август"],
+
+    "september": ["Sentabr", "Сентябрь"],
+
+    "october": ["Oktabr", "Октябрь"],
+
+    "november": ["Noyabr", "Ноябрь"],
+
+    "december": ["Dekabr", "Декабрь"],
+
+    "year": ["Yil", "Год"],
+
+    "cash": ["Naqd", "Наличные"],
+
+    "card": ["Karta", "Карта"],
+
+    "full": ["To'liq", "Полный"],
+
+    "monthly": ["Oylik", "Ежемесячно"],
+
+    "pay": ["To'lash", "Платить"],
+
+    "pay for group": ["Guruh uchun to'lash", "Платить за группу"],
+
+    "amount": ["Miqdor", "Количество"],
+
+    "remaining amount": ["Qolgan miqdori", "Оставшееся сумма"],
+
+    "due date": ["Muddat", "Срок"],
+
+    "discount": ["Chegirma", "Скидка"],
+
+    "payments": ["To'lovlar", "Оплаты"],
+
+    "status": ["Holat", "Статус"],
+
+    "remaining": ["Qoldiq", "Остаток"],
+
+    "payment history": ["To'lov tarixi", "История платежей"],
+
+    "payment is cancelled": ["To'lov bekor qilindi", "Платеж отменен"],
+
+    "cancel payment": ["To'lovni bekor qilish", "Отменить платеж"],
+
+    "payment was successfully": ["To'lov muvaffaqiyatli amalga oshirildi", "Платеж успешно выполнен"],
+
+    "date registred": ["Ro'yxatga olingan sana", "Дата регистрации"],
+
+    "payment status": ["To'lov holati", "Статус платежа"],
+
+    "payed": ["To'landi", "Оплачено"],
+
+    "accounter": ["Hisobchi", "Бухгалтер"],
+
+    "confirmed": ["Tasdiqlandi", "Подтверждено"],
+
+    "rejected": ["Rad etildi", "Отклонено"],
+
+    "filter": ["Filtr", "Фильтр"],
+
+    "debtors": ["Qarzdorlar", "Должники"],
 
     "": ["", ""],
 
@@ -138,18 +240,5 @@ lang_dict = {
     "": ["", ""],
 
     "": ["", ""],
-
-    "": ["", ""],
-
-    "": ["", ""],
-
-    "": ["", ""],
-
-    "": ["", ""],
-
-    "": ["", ""],
-
-    "": ["", ""],
-
-    "": ["", ""],
+    
 }

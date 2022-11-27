@@ -233,6 +233,9 @@
 
          </ul>
          <div class="card">
+            <!-- <div class="card-header">
+                <h5 class="card-header">{{ request|string:'attendance' }}</h4>
+            </div> -->
             <div class="card-body tab-content" id="pills-tabContent-2">
             {% for date in dates %}
                 <div class="table-responsive tab-pane fade {% if date|is_current_date %}active show{% endif %}" 

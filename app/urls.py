@@ -7,7 +7,8 @@ from django.contrib.auth.views import (
 )
 from app.views import (
     student, course, teacher, group, lesson, 
-    main, payment, accounter, finance
+    main, payment, accounter, finance, user,
+
 )
 
 urlpatterns = [
@@ -72,4 +73,12 @@ urlpatterns = [
     # finance 
     path('finance/incomes', finance.finance_incomes, name='finance_incomes'),
     path('finance/debtors', finance.finance_debtors, name='finance_debtors'),
+
+    # user
+    path('user/list', user.user_list, name='user_list'),
+    path('user/create', user.user_create, name='user_create'),
+    path('user/edit/<int:pk>/', user.user_update, name='user_update'),
+    path('user/delete/<int:pk>/', user.user_delete, name='user_delete'),
+    
+
 ]   

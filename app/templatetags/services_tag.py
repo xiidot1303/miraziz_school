@@ -58,3 +58,9 @@ def payed_percent(payment):
 @register.filter()
 def filter_incomes(payment):
     return payment.incomes.all().exclude(conf=None).order_by('-pk')
+
+@register.filter()
+def groups_of_user(user):
+    groups = user.groups.all()
+    result = ', '.join(groups.values_list('name', flat=True))
+    return result
