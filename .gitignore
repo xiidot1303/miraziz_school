@@ -5,6 +5,7 @@ __pycache__/
 app/migrations
 **/__init__.py
 __init__.py
+files
 staticfiles
 persistencebot
 app/static/assets/*
