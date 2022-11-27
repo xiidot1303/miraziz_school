@@ -10,3 +10,4 @@ dj-static==0.0.6
 django-phonenumber-field==7.0.0
 django-phonenumbers==1.0.1
 Babel===2.10.3
+pandas==1.5.1
