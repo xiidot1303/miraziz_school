@@ -22,6 +22,7 @@ urlpatterns = [
 
     # main
     path('', main.main_menu, name='main_menu'),
+    path('change-lang/<int:lang>/', main.change_lang, name='change_lang'),
 
     # student
     path('students/list', student.student_list_all, name='student_list_all'),

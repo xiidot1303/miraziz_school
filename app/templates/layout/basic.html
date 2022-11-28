@@ -78,6 +78,31 @@
                           <ul class="navbar-nav ml-auto navbar-list align-items-center">
 
 
+                            <li class="nav-item nav-icon dropdown">
+                                <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {% if request|user_lang == 0 %}
+                                    <img src="{% static 'assets/my/images/flag/flag-uz.png' %}" class="img-fluid rounded-circle" alt="user" style="height: 30px; min-width: 30px; width: 30px;">
+                                {% else %}
+                                    <img src="{% static 'assets/my/images/flag/flag-ru.png' %}" class="img-fluid rounded-circle" alt="user" style="height: 30px; min-width: 30px; width: 30px;">
+                                {% endif %}
+                                    <span class="bg-primary"></span>
+                                </a>
+                                <div class="iq-sub-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                    <div class="card shadow-none m-0 border-0">
+                                        <div class=" p-0 ">
+                                            <ul class="dropdown-menu-1 list-group list-group-flush">
+                                                {% if request|user_lang == 0 %}
+                                                <li class="dropdown-item-1 list-group-item  px-2"><a class="p-0" href="{% url 'change_lang' 1 %}"><img src="{% static 'assets/my/images/flag/flag-ru-icon.png' %}" alt="img-flaf" class="img-fluid mr-2" style="width: 15px;height: 15px;min-width: 15px;"/>{{ request|string:'russian' }}</a></li>
+                                                {% else %}
+                                                <li class="dropdown-item-1 list-group-item  px-2"><a class="p-0" href="{% url 'change_lang' 0 %}"><img src="{% static 'assets/my/images/flag/flag-uz-icon.png' %}" alt="img-flaf" class="img-fluid mr-2" style="width: 15px;height: 15px;min-width: 15px;"/>{{ request|string:'uzbek' }}</a></li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
                               <li class="nav-item nav-icon dropdown">
                                   <a href="#" class="nav-item nav-icon dropdown-toggle pr-0 search-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                       <img src="{% static 'assets/images/user/user.png' %}" class="img-fluid avatar-rounded" alt="user">

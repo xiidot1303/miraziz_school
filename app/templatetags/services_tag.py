@@ -1,7 +1,8 @@
 from django import template
 from app.services import (
-    lesson_service, student_service, payment_service, group_service, user_service
+    lesson_service, student_service, payment_service, group_service, user_service, language_service
 )
+from app.utils import get_user_ip
 
 register = template.Library()
 
@@ -64,3 +65,8 @@ def groups_of_user(user):
     groups = user.groups.all()
     result = ', '.join(groups.values_list('name', flat=True))
     return result
+
+@register.filter()
+def user_lang(request):
+    ip = get_user_ip(request)
+    return language_service.get_lang_by_ip(ip)

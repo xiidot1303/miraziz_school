@@ -1,5 +1,6 @@
 from app.views import *
 from app.services.user_service import *
+from app.services.language_service import *
 
 @login_required
 def main_menu(request):
@@ -11,3 +12,9 @@ def main_menu(request):
         return redirect('accounter_page')
     elif is_user_in_group(request, 'receptionist'):
         return redirect('student_list_all')
+
+@login_required
+def change_lang(request, lang):
+    ip = get_user_ip(request)
+    update_lang_by_ip(ip, int(lang))
+    return redirect_back(request)
