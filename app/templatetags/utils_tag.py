@@ -57,9 +57,14 @@ def get_month_by_date(request, date):
     return month
 
 @register.filter()
-def is_current_date(date):
+def is_current_date(dates, date):
     today_ = today()
+    if (date[0] < today_.month and date[1] == today_.year) or date[1] < today_.year:
+        # is last date
+        if date == dates.last():
+            return True
     return True if date[0] == today_.month and date[1] == today_.year else False
+
 
 @register.filter()
 def for_pills(date):

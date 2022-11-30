@@ -223,9 +223,9 @@
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             {% for date in dates %}
             <li class="nav-item" data-toggle="tooltip" data-placement="top" title="{{ date|index:1 }} - {{ request|string:'year' }}">
-                <a class="nav-link {% if date|is_current_date %}active{% endif %}" 
+                <a class="nav-link {% if dates|is_current_date:date %}active{% endif %}" 
                 id="pills-{{ date|for_pills }}-tab" data-toggle="pill" href="#pills-{{ date|for_pills }}" role="tab" 
-                    aria-controls="pills-{{ date|for_pills }}" aria-selected="{% if date|is_current_date %}true{% else %}false{% endif %}">
+                    aria-controls="pills-{{ date|for_pills }}" aria-selected="{% if dates|is_current_date:date %}true{% else %}false{% endif %}">
                     {{ request|get_month_by_date:date }}
                 </a>
                 </li>
@@ -238,7 +238,7 @@
             </div> -->
             <div class="card-body tab-content" id="pills-tabContent-2">
             {% for date in dates %}
-                <div class="table-responsive tab-pane fade {% if date|is_current_date %}active show{% endif %}" 
+                <div class="table-responsive tab-pane fade {% if dates|is_current_date:date %}active show{% endif %}" 
                     id="pills-{{ date|for_pills }}" role="tabpanel" aria-labelledby="pills-{{ date|for_pills }}-tab">
                     <table class="table scrolling-table">
                         <thead>
