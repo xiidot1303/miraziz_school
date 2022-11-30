@@ -2,11 +2,16 @@ from app.models import Lesson, Journal
 from app.services import *
 
 def create_lesson(group):
-    lesson = Lesson.objects.create(group=group)
-    for student in group.members.filter(status=1):
+    members = group.members.filter(status=1)
+    if members:
+        lesson = Lesson.objects.create(group=group)
+    else:
+        return None
+        
+    for student in members:
         lesson.journal.create(student=student)
         lesson.save()
-
+    
     # minus one lesson in groups
     group.remaining_lessons -= 1
     group.save()
