@@ -211,34 +211,46 @@ lang_dict = {
 
     "debtors": ["Qarzdorlar", "Должники"],
 
-    "": ["", ""],
+    "user": ["Foydalanuvchi", "Пользователь"],
 
-    "": ["", ""],
+    "users": ["Foydalanuvchi", "Пользователи"],
 
-    "": ["", ""],
+    "first name": ["Ism", "Имя"],
 
-    "": ["", ""],
+    "last name": ["Familiya", "Фамилия"],
 
-    "": ["", ""],
+    "last login": ["Oxirgi kirish", "Последний вход"],
 
-    "": ["", ""],
+    "groups": ["Guruhlar", "Группы"],
 
-    "": ["", ""],
+    "successfully created user": [
+        "Foydalanuvchi muvaffaqiyatli qo'shildi", 
+        "Пользователь успешно создан"
+    ],
 
-    "": ["", ""],
+    "successfully updated user": [
+        "Foydalanuvchi muvaffaqiyatli o'zgartirildi", 
+        "Пользователь успешно изменен"
+    ],
 
-    "": ["", ""],
+    "successfully deleted user": [
+        "Foydalanuvchi muvaffaqiyatli o'chirildi", 
+        "Пользователь успешно удален"
+    ],
 
-    "": ["", ""],
+    "this username is taken. please type another username": [
+        "Bu username band. Iltimos, boshqa username yozing", 
+        "Это имя пользователя уже занято. Пожалуйста, введите другое имя пользователя"
+    ],
 
-    "": ["", ""],
+    "receptionist": ["Administrator", "Администратор"],
 
-    "": ["", ""],
+    "cashier": ["Kassir", "Кассир"],
 
-    "": ["", ""],
+    "director": ["Direktor", "Директор"],
 
-    "": ["", ""],
+    "russian": ["Ruscha", "Русский"],
 
-    "": ["", ""],
+    "uzbek": ["O'zbekcha", "Узбекский"],
     
 }
