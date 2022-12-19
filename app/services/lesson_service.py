@@ -3,10 +3,8 @@ from app.services import *
 
 def create_lesson(group):
     members = group.members.filter(status=1)
-    if members:
-        lesson = Lesson.objects.create(group=group)
-    else:
-        return None
+
+    lesson = Lesson.objects.create(group=group)
         
     for member in members:
         lesson.journal.create(student=member.student)
