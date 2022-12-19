@@ -105,6 +105,10 @@ class GroupCreateView(CreateView, LoginRequiredMixin, PermissionRequiredMixin):
             if obj.weekdays.filter(day=weekday):
                 if obj.start_time > time_now():
                     create_lesson(group=obj)
+                elif obj.start_time < time_now() < obj.end_time:
+                    lesson = create_lesson(group=obj)
+                    start_lesson(lesson)
+                    
         messages.success(self.request, text_successfully_created(self.request))
         return reverse_lazy('group_list_all')
 
