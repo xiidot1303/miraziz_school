@@ -8,8 +8,9 @@ def lesson_current(request):
     user = request.user
     teacher = get_teacher_by_user(user)
     lesson = get_current_lesson(teacher)
+    upcoming_lesson = get_upcoming_lesson(teacher) if not lesson else None
     journal = lesson.journal.all() if lesson else None
-    context = {'journal': journal, 'lesson': lesson}
+    context = {'journal': journal, 'lesson': lesson, 'upcoming_lesson': upcoming_lesson}
     return render(request, 'lesson/lesson_page.html', context)
 
 @login_required

@@ -32,6 +32,13 @@ def get_current_lesson(teacher):
         ).order_by('start_datetime')
     return query[0] if query else None
 
+def get_upcoming_lesson(teacher):
+    query = Lesson.objects.filter(
+        group__teacher=teacher, start_datetime=None
+        )
+
+    return query[0] if query else None
+
 def filter_not_started_lessons():
     query = Lesson.objects.filter(start_datetime=None)
     return query
