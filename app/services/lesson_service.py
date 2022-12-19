@@ -8,8 +8,8 @@ def create_lesson(group):
     else:
         return None
         
-    for student in members:
-        lesson.journal.create(student=student)
+    for member in members:
+        lesson.journal.create(student=member.student)
         lesson.save()
     
     # minus one lesson in groups
