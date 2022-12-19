@@ -28,7 +28,7 @@ class Student(models.Model):
 
     def save(self, *args, **kwargs):
         # add student to lesson if status = 1
-        add_student_to_created_lessons(self)
+        add_student_to_lessons(self)
         return super(Student, self).save(*args, **kwargs)
 
 class Course(models.Model):
@@ -197,9 +197,10 @@ class Weekday(models.Model):
 
 
 # Functions
-def add_student_to_created_lessons(student):
+def add_student_to_lessons(student):
+    print(student)
     lessons = Lesson.objects.filter(
-        start_datetime=None, end_datetime=None, group__members__pk=student.pk
+        end_datetime=None, group__members__student__pk=student.pk
         ).exclude(journal__student__pk=student.pk)
     for lesson in lessons:
         lesson.journal.create(student=student)

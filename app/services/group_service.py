@@ -2,7 +2,7 @@ from app.models import (
     Group,
     Group_member, 
     Lesson, 
-    add_student_to_created_lessons as _add_student_to_created_lessons
+    add_student_to_lessons as _add_student_to_lessons
 )
 from app.services import *
 from app.services.payment_service import (
@@ -56,7 +56,7 @@ def add_student_to_group(group, student, payment_method, discount, start_date=to
     else:
         _calculate_full_payment(group, student, start_date, discount)
 
-    _add_student_to_created_lessons(student)
+    _add_student_to_lessons(student)
 
 
 
