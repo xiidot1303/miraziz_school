@@ -12,6 +12,8 @@ def main_menu(request):
         return redirect('accounter_page')
     elif is_user_in_group(request, 'receptionist'):
         return redirect('student_list_all')
+    elif is_user_in_group(request, 'director'):
+        return redirect('finance_incomes')
 
 @login_required
 def change_lang(request, lang):
