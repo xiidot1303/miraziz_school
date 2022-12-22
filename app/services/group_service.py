@@ -28,7 +28,7 @@ def check_group_has_lesson(obj):
 def check_teacher_has_lesson(data, obj):
     teacher, weekdays, start_time, end_time = data.get('teacher'), data.get('weekdays'), data.get('start_time'), data.get('end_time')
     query = Group.objects.filter(
-        start_time__lte=end_time, end_time__gte=start_time, teacher=teacher
+        start_time__lt=end_time, end_time__gt=start_time, teacher=teacher
         ).exclude(
             pk=obj.pk
         )   
