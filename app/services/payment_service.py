@@ -52,11 +52,11 @@ def get_first_payable_payment_of_member(member):
 
 def get_payable_remaining_amount_of_member(member):
     payment = get_first_payable_payment_of_member(member)
-    return payment.remaining_amount
+    return payment.remaining_amount if payment else 0
 
 def get_payable_due_date_of_member(member):
     payment = get_first_payable_payment_of_member(member)
-    return payment.due_date
+    return payment.due_date if payment else today()
 
 def pay_next_payment_of_member(member, amount, type):
     while True:
@@ -108,6 +108,14 @@ def filter_debtors(group_pk=None):
     )
     return payments
 
+def delete_empty_payments_of_member(member):
+    for payment in member.payments.all():
+        if not payment.payed:
+            if payment.incomes.all():
+                payment.amount = payment.payed_amount
+                payment.save()
+            else:
+                payment.delete()
 
 
 # INCOME

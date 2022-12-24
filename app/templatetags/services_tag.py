@@ -17,7 +17,7 @@ def student_attended_date(student, group):
     
 @register.filter()
 def ordered_members_list_of_group(group):
-    students = group.members.all().order_by('-status', 'student__name')
+    students = group.members.filter().exclude(status=None).order_by('-status', 'student__name')
     return students
 
 @register.filter()

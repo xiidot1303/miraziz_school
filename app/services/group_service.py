@@ -7,7 +7,8 @@ from app.models import (
 from app.services import *
 from app.services.payment_service import (
     calculate_monthly_payment as _calculate_monthly_payment,
-    calculate_full_payment as _calculate_full_payment
+    calculate_full_payment as _calculate_full_payment,
+    delete_empty_payments_of_member as _delete_empty_payments_of_member
 )
 
 def all_groups():
@@ -48,7 +49,14 @@ def filter_groups_that_today_has_lesson():
 
 def add_student_to_group(group, student, payment_method, discount, start_date=today()):
     # start_date = today() if not start_date else start_date
-    group.members.get_or_create(student=student)
+    member, is_created = group.members.get_or_create(student=student)
+    
+    # activate member if inactive
+    if not is_created:
+        member.status = 1
+        member.date = datetime_now()
+        member.save()
+
     group.save()
     if payment_method == 'monthly':
         # calculate monthly payment
@@ -64,6 +72,7 @@ def get_group_by_payment(payment):
     group = Group.objects.get(members__payments=payment)
     return group
 
+
 # GROUP MEMBERS
 
 def create_group_member(student):
@@ -76,8 +85,12 @@ def get_group_member_by_pk(pk):
 
 def delete_group_member(member=None, member_pk=None):
     member = get_group_member_by_pk(member_pk) if not member else member    
-    member.delete()
+    # member.delete()
+    member.status = None
+    member.save()
+
+    _delete_empty_payments_of_member(member)
 
 def filter_group_members_by_student(student):
-    query = Group_member.objects.filter(student=student)
+    query = Group_member.objects.filter(student=student).exclude(status=None)
     return query

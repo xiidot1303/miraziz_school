@@ -12,14 +12,14 @@ def get_student_by_pk(pk):
 
 def filter_students_who_are_not_in_group(group):
     students = Student.objects.filter(
-        ~Exists(group.members.filter(student_id=OuterRef('pk'))), 
+        ~Exists(group.members.filter(student_id=OuterRef('pk')).exclude(status=None)), 
         status=1
         )
     return students
 
 def filter_students_who_are_member_of_group(group):
     students = Student.objects.filter(
-        Exists(group.members.filter(student_id=OuterRef('pk'))), 
+        Exists(group.members.filter(student_id=OuterRef('pk')).exclude(status=None)), 
         status=1
         )
     return students
