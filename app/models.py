@@ -67,7 +67,7 @@ class Group_member(models.Model):
     @property
     def payable_amount(self):
         payment = self.payments.filter(due_date__lte=date.today()).last()
-        return payment.remaining_amount
+        return payment.remaining_amount if payment else 0
 
 class Group(models.Model):
     title = models.CharField(null=True, blank=True, max_length=255)

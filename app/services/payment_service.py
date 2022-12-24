@@ -41,10 +41,11 @@ def calculate_full_payment(group, student, start_date, discount):
     create_payment_of_member(member, price, start_date)
 
 def create_payment_of_member(member, amount, due_date):
-    member.payments.create(
-        amount=amount,
-        due_date=due_date
-    )
+    if amount:
+        member.payments.create(
+            amount=amount,
+            due_date=due_date
+        )
 
 def get_first_payable_payment_of_member(member):
     payment = member.payments.filter(payed=False).first()
