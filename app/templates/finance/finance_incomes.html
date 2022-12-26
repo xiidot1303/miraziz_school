@@ -9,20 +9,28 @@
 {% block main %}
 
 <div class="card">
-    <div class="card-header d-flex justify-content-between">
-        <h4 class="card-title">
+    <div class="card-header d-flex justify-content-between row">
+        <h4 class="card-title col-lg">
             {{ request|string:'overall' }}: {{ overall_amount|number }}
         </h4>
-        <form action="" method="get">
-            <div class="card-action d-flex justify-content-between">
+        <div class="card-action d-flex justify-content-between col-lg">
+            <form action="" method="get">
                 <input type="hidden" name="filter">
-                <input name="from" id="from_date" type="date" class="form-control" value="{{ from }}">
-                <input name="to" id="to_date" type="date" class="form-control ml-3" value="{{ to }}">
-                <button type="submit" class="btn btn-action btn-outline-primary ml-3">
-                    {{ request|string:'filter' }}
-                </button>
-            </div>
-        </form>
+                <div class="row">
+                    <div class="col-lg-5">
+                        <input name="from" id="from_date" type="date" class="form-control" value="{{ from }}">
+                    </div>
+                    <div class="col-lg-5">
+                        <input name="to" id="to_date" type="date" class="form-control" value="{{ to }}">
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="submit" class="btn btn-action btn-outline-primary">
+                            {{ request|string:'filter' }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="card-body">
         <table id="datatable" class="table data-table table-striped table-bordered">

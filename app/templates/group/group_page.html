@@ -9,7 +9,7 @@
 {% block main %}
 
 <div class="row">
-    <div class="col-4">
+    <div class="col-lg-4">
         <div class="card">
             <!-- start card header -->
             <div class="card-header d-flex justify-content-between">
@@ -221,7 +221,7 @@
 
 
     <!-- start monthly attendance -->
-    <div class="col-8">
+    <div class="col-lg-8">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             {% for date in dates %}
             <li class="nav-item" data-toggle="tooltip" data-placement="top" title="{{ date|index:1 }} - {{ request|string:'year' }}">

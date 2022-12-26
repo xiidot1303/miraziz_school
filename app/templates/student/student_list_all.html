@@ -22,13 +22,13 @@
                <th>{{ request|string:'age' }}</th>
                <th>{{ request|string:'phone' }}</th>
                <th>{{ request|string:'date' }}</th>
-               <th>{{ request|string:'action' }}</th>
+               <th scope="col">{{ request|string:'action' }}</th>
       
              </tr>
           </thead>
           <tbody>
               {% for s in students %}
-             <tr class="clickable" data-href="{% url 'student_page' s.pk %}">
+             <tr class="clickable white-space-no-wrap" data-href="{% url 'student_page' s.pk %}">
                   <td>{{ forloop.counter }}</td>
                   <td>{{ s.name }}</td>
                   <td>{{ s.address }}</td>
@@ -36,7 +36,7 @@
                   <td>{{ s.phone }}</td>
                   <td>{{ s.registred_date|date:"d.m.Y" }}</td>
                   
-                  <td>
+                  <td style="width: 100px;">
                      {% if perms.app.delete_student %}
                      <a id = "a" href="{% url 'student_delete' s.pk %}" 
                         onclick="return confirm(&#39;{{ request|string:'are you sure' }}&#39;)"

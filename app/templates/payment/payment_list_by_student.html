@@ -150,7 +150,7 @@
                                             </thead>
                                             <tbody>
                                                 {% for i in p|filter_incomes %}
-                                                <tr>
+                                                <tr class="white-space-no-wrap">
                                                     <td>{{ forloop.counter }}</td>
                                                     <!-- income or expense -->
                                                     {% if i.amount > 0 %}

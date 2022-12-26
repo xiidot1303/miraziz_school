@@ -25,7 +25,7 @@
                 <div class="row">
                 {% else %}
                 {% endif %}
-                <div class="col">
+                <div class="col-lg">
                     {% if f.id_for_label == 'id_photo' %}
                     <div class="custom-file mb-3">
                         {{ f.errors }} 
@@ -61,7 +61,7 @@
                 
             {% endfor %}
             {% if not form|length_form|is_even_number %}
-            <div class="col"></div>
+            <div class="col-lg"></div>
             {% endif %}
             </div>
             <div style="text-align: center;">

@@ -39,7 +39,7 @@
                   <td>{{ j.student.phone }}</td>
                   <td>{{ j.student|student_attended_date:lesson.group }}</td>
                   
-                  <td>
+                  <td class="white-space-no-wrap">
                      {% if j.attended == None %}
                      <a id = "a" href="{% url 'attendance_change' j.pk 1 %}" 
                      class="btn btn-success btn-action rounded-pill">

@@ -25,7 +25,7 @@
           <tbody>
               {% for g in groups %}
 
-             <tr class="clickable" data-href="{% url 'group_page' g.pk %}">
+             <tr class="clickable white-space-no-wrap" data-href="{% url 'group_page' g.pk %}">
                   <td>{{ forloop.counter }}</td>
                   
                   <td>{{ g.title }}</td>
