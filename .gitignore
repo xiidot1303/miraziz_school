@@ -13,3 +13,4 @@ app/static/assets/*
 !app/views/__init__.py
 !app/utils/__init__.py
 !app/services/__init__.py
+!app/bot/__init__.py
