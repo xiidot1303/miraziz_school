@@ -32,6 +32,9 @@ class PaymentAdmin(admin.ModelAdmin):
 class IncomeAdmin(admin.ModelAdmin):
     list_display = ['amount', 'datetime', 'type', 'conf']
 
+class Bot_userAdmin(admin.ModelAdmin):
+    list_display = ['name', 'username', 'phone', 'lang', 'date']
+
 admin.site.register(Language, LanguageAdmin)
 admin.site.register(Student, StudentAdmin)
 admin.site.register(Course, CourseAdmin)
@@ -42,5 +45,4 @@ admin.site.register(Journal, JournalAdmin)
 admin.site.register(Group_member, Group_memberAdmin)
 admin.site.register(Payment, PaymentAdmin)
 admin.site.register(Income, IncomeAdmin)
-
-
+admin.site.register(Bot_user, Bot_userAdmin)

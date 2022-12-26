@@ -8,8 +8,11 @@ from django.contrib.auth.views import (
 from app.views import (
     student, course, teacher, group, lesson, 
     main, payment, accounter, finance, user,
+    botwebhook
 
 )
+
+from config import BOT_API_TOKEN
 
 urlpatterns = [
     # login
@@ -23,6 +26,10 @@ urlpatterns = [
     # main
     path('', main.main_menu, name='main_menu'),
     path('change-lang/<int:lang>/', main.change_lang, name='change_lang'),
+    path('web', main.web_app, name='web_app'),
+
+    # bot
+    path(BOT_API_TOKEN, botwebhook.bot_webhook),
 
     # student
     path('students/list', student.student_list_all, name='student_list_all'),

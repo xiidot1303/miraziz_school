@@ -11,7 +11,12 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 from dj_static import Cling
+from config import DEBUG
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
 
 application = Cling(get_wsgi_application())
+
+if DEBUG:
+    from app.bot.update import updater
+    updater.start_polling()

@@ -20,3 +20,6 @@ def change_lang(request, lang):
     ip = get_user_ip(request)
     update_lang_by_ip(ip, int(lang))
     return redirect_back(request)
+
+def web_app(request):
+    return render(request, 'test.html')
