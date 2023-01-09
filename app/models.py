@@ -21,6 +21,8 @@ class Student(models.Model):
     phone = PhoneNumberField(null=True, blank=True, max_length=32)
     registred_date = models.DateTimeField(db_index=True, null=True, auto_now_add=True, blank=True)
     status = models.IntegerField(null=True, blank=False, choices=STATUS_CHOICES, default=1)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.SET_NULL)
+    password = models.CharField(null=True, blank=True, max_length=255)
     
     def __str__(self) -> str:
         phone = self.phone or ''

@@ -21,7 +21,7 @@
                     </li>
                     <!-- end GROUP -->
                     
-
+                    {% if not request|user_in_group:'student' or request.user.is_superuser %}
                     {% if perms.app.view_student %}
                     <!-- start students -->
                     <li class="sidebar-layout">
@@ -324,3 +324,4 @@
                     </li>
                     <!-- end users -->
                     {% endif %}
+                {% endif %}

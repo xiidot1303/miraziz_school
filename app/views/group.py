@@ -2,9 +2,10 @@ from app.views import *
 from app.services.group_service import *
 from app.services.student_service import *
 from app.services.payment_service import *
-
+from app.services.user_service import is_user_in_group
 
 @permission_required('app.view_group')
+@group_forbid('student')
 @login_required
 def group_list_all(request):
     groups = all_groups()
@@ -40,6 +41,7 @@ def group_page(request, pk, month=today().month, year=today().year):
     
     # updated students list
     students = filter_students_who_are_not_in_group(group)
+
     # attendance
     current_month_text = month_by_index(month, request)
     # lessons = filter_lessons_monthly(group, month, year)

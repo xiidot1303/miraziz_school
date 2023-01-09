@@ -255,9 +255,12 @@ lang_dict = {
 
     "start time": ["Boshlanish vaqti", "Время начала"],
 
-    "": ["", ""],
+    "password": ["Parol", "Пароль"],
 
-    "": ["", ""],
+    "phone number is valid. please type another": [
+        "Bu telefon raqami boshqa talabaga ulangan. Iltimos, boshqasini yozing", 
+        "Этот номер телефона связан с другим студентом. Пожалуйста, введите другой"
+        ],
 
     "": ["", ""],
 

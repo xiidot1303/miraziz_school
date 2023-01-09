@@ -1,6 +1,7 @@
 from app.views import *
 from app.services.user_service import *
 from app.services.language_service import *
+from app.services.student_service import get_student_by_user
 
 @login_required
 def main_menu(request):
@@ -14,6 +15,10 @@ def main_menu(request):
         return redirect('student_list_all')
     elif is_user_in_group(request, 'director'):
         return redirect('finance_incomes')
+    elif is_user_in_group(request, 'student'):
+        user = request.user
+        student = get_student_by_user(user)
+        return redirect('student_page', pk=student.pk)
 
 @login_required
 def change_lang(request, lang):

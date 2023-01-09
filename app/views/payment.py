@@ -5,6 +5,7 @@ from app.services.group_service import *
 
 @login_required
 @permission_required('app.view_payment')
+@check_student_is_user()
 def payment_list_by_student(request, student_pk, group_pk=None):
     student = get_student_by_pk(student_pk)
     payments = filter_payments_by_student(student, decreasing=True, group_pk=group_pk)

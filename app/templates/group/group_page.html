@@ -16,26 +16,34 @@
                 <h4 class="card-title">{{ group.course.title }} ・ {{ group.title }}</h4>
                 
                 <!-- start header-action -->
-                <div class="header-action">
-                    <a href="{% url 'group_update' group.pk %}" class="btn btn-outline-primary rounded-pill btn-action"  
-                    title="{{ request|string:'edit' }}" data-toggle="tooltip">
-                    <i class="fas fa-edit"></i>
-                    </a>
-                    <div class="tooltip bs-tooltip-top" role="tooltip">
-                        <div class="arrow"></div>
-                        <div class="tooltip-inner">{{ request|string:'edit' }}</div>
+                <div class="header-action d-flex justify-content-between">
+                    <div>
+                        {% if perms.app.change_group %}
+                        <a href="{% url 'group_update' group.pk %}" class="btn btn-outline-primary rounded-pill btn-action"  
+                        title="{{ request|string:'edit' }}" data-toggle="tooltip">
+                        <i class="fas fa-edit"></i>
+                        </a>
+                        {% endif %}
+                        <div class="tooltip bs-tooltip-top" role="tooltip">
+                            <div class="arrow"></div>
+                            <div class="tooltip-inner">{{ request|string:'edit' }}</div>
+                        </div>
                     </div>
-                    <a href="" data-toggle="modal" data-target="#add_studentModal">
-                        <button class="btn btn-outline-success rounded-pill btn-action"
-                            title="{{ request|string:'add student' }}" data-toggle="tooltip">
-                            <i class="fas fa-plus"></i>
-                        </button>
-
-                    </a>
-
-                    <div class="tooltip bs-tooltip-top" role="tooltip">
-                        <div class="arrow"></div>
-                        <div class="tooltip-inner">{{ request|string:'add student' }}</div>
+                    <div>
+                        {% if perms.app.change_group and perms.app.add_payment %}
+                        <a href="" data-toggle="modal" data-target="#add_studentModal">
+                            <button class="btn btn-outline-success rounded-pill btn-action"
+                                title="{{ request|string:'add student' }}" data-toggle="tooltip">
+                                <i class="fas fa-plus"></i>
+                            </button>
+    
+                        </a>
+                        {% endif %}
+    
+                        <div class="tooltip bs-tooltip-top" role="tooltip">
+                            <div class="arrow"></div>
+                            <div class="tooltip-inner">{{ request|string:'add student' }}</div>
+                        </div>
                     </div>
                     <!-- Modal -->
                     <div class="modal fade" id="add_studentModal" tabindex="-1" role="dialog" aria-labelledby="add_studentModal" aria-hidden="true">
@@ -116,7 +124,8 @@
                 <hr>
                 <table class="table table-borderless">
                     <tbody>
-                        {% for member in group|ordered_members_list_of_group %}
+                        {% for member in group|ordered_members_list_of_group:request %}
+
                             {% if member.status == 0 %} 
                             <tr style="color: rgba(128, 128, 128, 0.771)">
                             {% else %}
@@ -130,6 +139,7 @@
 
                                 <!-- <td>{{ member.student.phone }}</td> -->
                                 <td class="w-10">
+                                    {% if perms.app.add_income %}
                                     <a type="button" data-toggle="modal" data-target="#payModal{{ member.pk }}">
                                         {% if member|payable_remaining_amount == 0 %}
                                         <!-- empty -->
@@ -139,7 +149,7 @@
                                         <i class="fas fa-money-check-alt" style="color: red"></i>
                                         {% endif %} 
                                     </a>
-
+                                    {% endif %}
                                     <!-- start pay modal -->
                                     <div class="modal fade" id="payModal{{ member.pk }}" tabindex="-2" role="dialog" aria-labelledby="payModalLabel{{ member.pk }}" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
@@ -199,14 +209,17 @@
                                         <i class="fas fa-ellipsis-v"></i>
                                     </a>
                                     <div class="dropdown-menu">
-                                        
-
+                                        {% if perms.app.change_group and perms.app.delete_payment %}
                                         <a href="{% url 'group_remove_student' group.pk member.pk %}" class="dropdown-item r-u-sure">
                                             <i class="fas fa-trash"></i> {{ request|string:'remove from group' }}
                                         </a>
+                                        {% endif %}
+
+                                        {% if perms.app.view_payment %}
                                         <a href="{% url 'payment_list_by_student' member.student.pk group.pk %}" class="dropdown-item">
                                             <i class="fas fa-file-invoice"></i> {{ request|string:'payments' }}
                                         </a>
+                                        {% endif %}
                                     </div>
                                 </td>
                             </tr>
@@ -254,7 +267,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for member in group|ordered_members_list_of_group %}
+                            {% for member in group|ordered_members_list_of_group:request %}
                             <tr>
                                 <td scope="col">{{ member.student.name }}</td>
                                 {% for lesson in group|lessons_current_date:date %}

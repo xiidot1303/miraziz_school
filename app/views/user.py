@@ -13,11 +13,11 @@ def user_list(request):
 @permission_required('auth.add_user')
 def user_create(request):
     form = UserForm()
-    form.fields['groups'].choices = [(g.pk, get_string(g.name, request)) for g in Group.objects.all()]
+    form.fields['groups'].choices = [(g.pk, get_string(g.name, request)) for g in Group.objects.all().exclude(name='student')]
 
     if request.method == 'POST':
         form = UserForm(request.POST)
-        form.fields['groups'].choices = [(g.pk, g.name) for g in Group.objects.all()]
+        form.fields['groups'].choices = [(g.pk, g.name) for g in Group.objects.all().exclude(name='student')]
         if form.is_valid():
             data = form.cleaned_data
             list_data = [data[value] for value in data]
@@ -36,7 +36,7 @@ def user_update(request, pk):
     user = get_user_by_pk(pk)
     if request.method == 'POST':
         form = UserForm(request.POST)
-        form.fields['groups'].choices = [(g.pk, g.name) for g in Group.objects.all()]
+        form.fields['groups'].choices = [(g.pk, g.name) for g in Group.objects.all().exclude(name='student')]
         if form.is_valid():
             data = form.cleaned_data
             list_data = [data[value] for value in data]
@@ -53,7 +53,7 @@ def user_update(request, pk):
         'groups': list(filter_groups_of_user(user).values_list('pk', flat=True)),
     })
 
-    form.fields['groups'].choices = [(g.pk, get_string(g.name, request)) for g in Group.objects.all()]
+    form.fields['groups'].choices = [(g.pk, get_string(g.name, request)) for g in Group.objects.all().exclude(name='student')]
     context = {'form': form, 'title': 'user', 'title1': 'changing', 'header1': 'user', 'header2': user.username}
     return render(request, 'main/edit.html', context)
 

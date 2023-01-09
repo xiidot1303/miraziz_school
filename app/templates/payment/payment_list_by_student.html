@@ -57,12 +57,14 @@
                     <td>{{ p.amount }}</td>
                     <td class="">
                         {% if not p.payed %}
+                        {% if perms.app.add_income %}
                         <a type="button" data-toggle="modal" data-target="#payModal{{ p.pk }}">
                             <button class="btn btn-action btn-primary" data-toggle="tooltip" data-placement="top"
                              title="{{ request|string:'pay' }}">
                              <i class="fas fa-money-check-alt"></i>
                             </button>
                         </a>
+                        {% endif %}
                         {% endif %}
                         
                         <!-- start pay modal -->

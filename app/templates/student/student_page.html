@@ -27,26 +27,32 @@
                 
                 <!-- actions -->
                 <div class="mt-3 d-flex ">
+                    {% if perms.app.delete_student %}
                     <a href="{% url 'student_delete' student.pk %}" onclick="return confirm(&#39;{{ request|string:'are you sure' }}&#39;)">
                         <button class="btn btn-action btn-outline-danger rounded-pill" data-toggle="tooltip" data-placement="bottom" 
                             title="{{ request|string:'delete' }}">
                             <i class="fas fa-trash"></i>
                         </button>
                     </a>
-                    
+                    {% endif %}
+
+                    {% if perms.app.change_student %} 
                     <a href="{% url 'student_update' student.pk %}" target="_blank">
                         <button class="btn btn-action btn-outline-primary rounded-pill ml-2" data-toggle="tooltip" data-placement="bottom" 
                             title="{{ request|string:'edit' }}">
                             <i class="fas fa-edit"></i>
                         </button>
                     </a>
+                    {% endif %}
                     
+                    {% if perms.app.view_payment %}
                     <a href="{% url 'payment_list_by_student' student.pk %}" target="_blank">
                         <button class="btn btn-action btn-outline-info rounded-pill ml-2" data-toggle="tooltip" data-placement="bottom" 
                             title="{{ request|string:'payments' }}">
                             <i class="fas fa-file-invoice"></i>
                         </button>
                     </a>
+                    {% endif %}
 
                 </div>
             </div>

@@ -8,14 +8,15 @@ from phonenumber_field.formfields import PhoneNumberField
 class StudentForm(ModelForm):
     class Meta:
         model = Student
-        fields = ['name', 'address', 'age', 'phone']
+        fields = ['name', 'address', 'age', 'phone', 'password']
         widgets = {
             'name': forms.TextInput(attrs={"class": "form-control"}), 
             'address': forms.TextInput(attrs={"class": "form-control"}), 
             'age': forms.NumberInput(attrs={"class": "form-control"}), 
             'phone': PhoneNumberPrefixWidget(initial='UZ', attrs={"class": "form-control"}),
+            'password': forms.PasswordInput(attrs={"class": "form-control"})
         }
-    field_order = ['name', 'address', 'age', 'phone']
+    field_order = ['name', 'address', 'age', 'phone', 'password']
 
 class CourseForm(ModelForm):
     class Meta:

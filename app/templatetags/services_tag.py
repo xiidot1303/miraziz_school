@@ -16,8 +16,12 @@ def student_attended_date(student, group):
     return lesson_date.strftime("%d.%m.%Y")
     
 @register.filter()
-def ordered_members_list_of_group(group):
-    students = group.members.filter().exclude(status=None).order_by('-status', 'student__name')
+def ordered_members_list_of_group(group, request):
+    if user_service.is_user_in_group(request, 'student') and not user_service.is_superuser(request):
+        student = student_service.get_student_by_user(request.user)
+        students = group.members.filter(student=student).exclude(status=None).order_by('-status', 'student__name')
+    else:
+        students = group.members.filter().exclude(status=None).order_by('-status', 'student__name')
     return students
 
 @register.filter()
@@ -70,3 +74,8 @@ def groups_of_user(user):
 def user_lang(request):
     ip = get_user_ip(request)
     return language_service.get_lang_by_ip(ip)
+
+@register.filter()
+def student_by_request(request):
+    user = request
+    return student_service.get_student_by_user(user)
